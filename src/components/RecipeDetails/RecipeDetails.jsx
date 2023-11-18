@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 export default function RecipeDetails({ recipeItemID }) {
   const [foodItem, setFoodItem] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const URL = `https://api.spoonacular.com/recipes/${recipeItemID}/information`;
   const API_KEY = "35d28329def94a19a13965a8fc9089f3";
 
@@ -13,15 +14,43 @@ export default function RecipeDetails({ recipeItemID }) {
       //setting setRecipeData array to data
       console.log(data);
       setFoodItem(data);
+      setIsLoading(false);
     }
     fetchRecipeContent();
   }, [recipeItemID]);
 
   return (
     <div>
-      Recipe Details {recipeItemID}
-      {foodItem.title}
-      <img src={foodItem.image} alt={foodItem.title} />
+      <div>
+        <h1>{foodItem.title} </h1>
+        <img src={foodItem.image} alt={foodItem.title} />
+        <div>
+          <span>
+            <strong>🕙 {foodItem.readyInMinutes} minutes</strong>
+          </span>
+          <span>
+            <strong>Serving size 👨‍👩‍👧 {foodItem.servings} </strong>
+          </span>
+          <span>
+            {foodItem.vegetrian ? "🥕 Vegetarian" : "🥩 Non-Vegetarian"}
+          </span>
+        </div>
+        <div>
+          <span>
+            € {(foodItem.pricePerServing / 100).toFixed(2)} Per serving
+          </span>
+        </div>
+      </div>
+      <div>
+        <h2>Instructions</h2>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          foodItem.analyzedInstructions[0].steps.map((step) => (
+            <li>{step.step}</li>
+          ))
+        )}
+      </div>
     </div>
   );
 }
