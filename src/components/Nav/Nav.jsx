@@ -5,7 +5,7 @@ export default function Nav() {
   return (
     <div className={styles.nav}>
       {" "}
-      <GiMeal /> Recipe App
+      <GiMeal className={styles.icon} /> Recipe App
     </div>
   );
 }
