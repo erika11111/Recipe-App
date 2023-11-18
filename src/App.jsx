@@ -5,8 +5,10 @@ import Search from "./components/Search/Search";
 import { useState } from "react";
 import RecipeListContainer from "./components/RecipeListContainer/RecipeListContainer";
 import InnerContainer from "./components/InnerContainer/InnerContainer";
+import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 function App() {
   const [recipeData, setRecipeData] = useState([]);
+  const [recipeItemID, setRecipeItemID] = useState("");
   return (
     <div className="App">
       <Nav />
@@ -15,7 +17,13 @@ function App() {
       <RecipeListContainer>
         <InnerContainer>
           {/* passing the prop */}
-          <RecipeList recipeData={recipeData} />
+          <RecipeList
+            recipeData={recipeData}
+            setRecipeItemID={setRecipeItemID}
+          />
+        </InnerContainer>
+        <InnerContainer>
+          <RecipeDetails recipeItemID={recipeItemID} />
         </InnerContainer>
       </RecipeListContainer>
     </div>
