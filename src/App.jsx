@@ -3,14 +3,18 @@ import Nav from "./components/Nav/Nav";
 import RecipeList from "./components/RecipeList/RecipeList";
 import Search from "./components/Search/Search";
 import { useState } from "react";
+import ViewRecipe from "./components/ViewRecipe/ViewRecipe";
 function App() {
   const [recipeData, setRecipeData] = useState([]);
   return (
     <div className="App">
       <Nav />
       <Search recipeData={recipeData} setRecipeData={setRecipeData} />
-      {/* passing the prop */}
-      <RecipeList recipeData={recipeData} />
+      {/*Nesting component ViewRecipe - parent component RecipeList - child component*/}
+      <ViewRecipe>
+        {/* passing the prop */}
+        <RecipeList recipeData={recipeData} />
+      </ViewRecipe>
     </div>
   );
 }
