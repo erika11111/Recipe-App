@@ -1,6 +1,4 @@
 import React from "react";
-//splitting GET request URL
-
 export default function RecipeItem({ recipeItem }) {
   return (
     <div>
