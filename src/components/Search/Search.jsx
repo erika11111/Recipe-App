@@ -7,7 +7,7 @@ const API_KEY = "35d28329def94a19a13965a8fc9089f3";
 
 export default function Search({ recipeData, setRecipeData }) {
   //it allows search bar input
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("pizza");
   //when search bar is updated, the component makes an API call
   useEffect(() => {
     async function fetchRecipes() {

@@ -8,7 +8,7 @@ import InnerContainer from "./components/InnerContainer/InnerContainer";
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 function App() {
   const [recipeData, setRecipeData] = useState([]);
-  const [recipeItemID, setRecipeItemID] = useState("");
+  const [recipeItemID, setRecipeItemID] = useState("656329");
   return (
     <div className="App">
       <Nav />
