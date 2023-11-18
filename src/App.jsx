@@ -1,3 +1,4 @@
+import RecipeList from "./components/RecipeList";
 import Search from "./components/Search";
 import { useState } from "react";
 function App() {
@@ -5,9 +6,8 @@ function App() {
   return (
     <div className="App">
       <Search recipeData={recipeData} setRecipeData={setRecipeData} />
-      {recipeData.map((recipeItem) => (
-        <h1>{recipeItem.title}</h1>
-      ))}
+      {/* passing the prop */}
+      <RecipeList recipeData={recipeData} />
     </div>
   );
 }
