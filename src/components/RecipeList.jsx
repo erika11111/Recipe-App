@@ -1,4 +1,5 @@
 import React from "react";
+import RecipeItem from "./RecipeItem";
 {
   /*Receiving the prop */
 }
@@ -6,7 +7,7 @@ export default function RecipeList({ recipeData }) {
   return (
     <div>
       {recipeData.map((recipeItem) => (
-        <h1>{recipeItem.title}</h1>
+        <RecipeItem key={recipeItem.id} recipeItem={recipeItem} />
       ))}
     </div>
   );

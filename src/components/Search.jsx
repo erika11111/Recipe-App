@@ -15,6 +15,7 @@ export default function Search({ recipeData, setRecipeData }) {
       //response is going to be in JSON, and needs to be decoded
       const data = await res.json();
       //setting setRecipeData array to data.results
+      console.log(data.results);
       setRecipeData(data.results);
     }
     fetchRecipes();
