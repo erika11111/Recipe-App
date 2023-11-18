@@ -3,7 +3,8 @@ import Nav from "./components/Nav/Nav";
 import RecipeList from "./components/RecipeList/RecipeList";
 import Search from "./components/Search/Search";
 import { useState } from "react";
-import ViewRecipe from "./components/ViewRecipe/ViewRecipe";
+import RecipeListContainer from "./components/RecipeListContainer/RecipeListContainer";
+import InnerContainer from "./components/InnerContainer/InnerContainer";
 function App() {
   const [recipeData, setRecipeData] = useState([]);
   return (
@@ -11,10 +12,12 @@ function App() {
       <Nav />
       <Search recipeData={recipeData} setRecipeData={setRecipeData} />
       {/*Nesting component ViewRecipe - parent component RecipeList - child component*/}
-      <ViewRecipe>
-        {/* passing the prop */}
-        <RecipeList recipeData={recipeData} />
-      </ViewRecipe>
+      <RecipeListContainer>
+        <InnerContainer>
+          {/* passing the prop */}
+          <RecipeList recipeData={recipeData} />
+        </InnerContainer>
+      </RecipeListContainer>
     </div>
   );
 }
