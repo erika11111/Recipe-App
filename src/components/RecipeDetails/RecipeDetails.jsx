@@ -45,14 +45,29 @@ export default function RecipeDetails({ recipeItemID }) {
         </span>
       </div>
       <div>
+        <h2>Ingredients</h2>
+        {foodItem.extendedIngredients.map((item) => (
+          <div>
+            <img
+              src={
+                `https://spoonacular.com/cdn/ingredients_100x100/` + item.image
+              }
+              alt={item.name}
+            />
+            <h3>{item.name}</h3>
+            <h3>
+              {item.amount} {item.unit}
+            </h3>
+          </div>
+        ))}
         <h2>Instructions</h2>
         <div className={styles.instructions}>
           <ol>
             {isLoading ? (
               <p>Loading...</p>
             ) : (
-              foodItem.analyzedInstructions[0].steps.map((step) => (
-                <li>{step.step}</li>
+              foodItem.analyzedInstructions[0].steps.map((item) => (
+                <li>{item.step}</li>
               ))
             )}
           </ol>
