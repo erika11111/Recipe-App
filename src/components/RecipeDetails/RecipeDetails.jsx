@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import styles from "./recipeDetails.module.css";
 export default function RecipeDetails({ recipeItemID }) {
   const [foodItem, setFoodItem] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -20,36 +21,42 @@ export default function RecipeDetails({ recipeItemID }) {
   }, [recipeItemID]);
 
   return (
-    <div>
-      <div>
-        <h1>{foodItem.title} </h1>
-        <img src={foodItem.image} alt={foodItem.title} />
-        <div>
-          <span>
-            <strong>🕙 {foodItem.readyInMinutes} minutes</strong>
-          </span>
-          <span>
-            <strong>Serving size 👨‍👩‍👧 {foodItem.servings} </strong>
-          </span>
-          <span>
+    <div className={styles.recipeCard}>
+      <h1 className={styles.title}>{foodItem.title} </h1>
+      <img className={styles.image} src={foodItem.image} alt={foodItem.title} />
+      <div className={styles.details}>
+        <span>
+          <strong>🕙 {foodItem.readyInMinutes} minutes</strong>
+        </span>
+        <span>
+          <strong>👨‍👩‍👧 Serving size {foodItem.servings} </strong>
+        </span>
+        <span>
+          <strong>
             {foodItem.vegetrian ? "🥕 Vegetarian" : "🥩 Non-Vegetarian"}
-          </span>
-        </div>
-        <div>
-          <span>
+          </strong>{" "}
+        </span>
+      </div>
+      <div className={styles.price}>
+        <span>
+          <strong>
             € {(foodItem.pricePerServing / 100).toFixed(2)} Per serving
-          </span>
-        </div>
+          </strong>
+        </span>
       </div>
       <div>
         <h2>Instructions</h2>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          foodItem.analyzedInstructions[0].steps.map((step) => (
-            <li>{step.step}</li>
-          ))
-        )}
+        <div className={styles.instructions}>
+          <ol>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              foodItem.analyzedInstructions[0].steps.map((step) => (
+                <li>{step.step}</li>
+              ))
+            )}
+          </ol>
+        </div>
       </div>
     </div>
   );
